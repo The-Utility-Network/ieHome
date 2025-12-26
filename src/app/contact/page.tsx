@@ -10,7 +10,8 @@ export default function ContactPage() {
     useEffect(() => {
         // Inject the contact form script
         const formSlug = "invisible-enemies-contact-form-92f26ca0";
-        const apiEndpoint = "https://crm.ledger1.ai/api/forms/submit";
+        // Use local API proxy to handle submission server-side and avoid CORS
+        const apiEndpoint = "/api/contact";
 
         // Theme configuration - Updated for dark theme with purple accents
         const theme = {
@@ -149,21 +150,21 @@ export default function ContactPage() {
                     referrer: document.referrer
                 })
             })
-                .then(function (response) {
-                    // API returns 200 with no response body on success
-                    if (response.ok && response.status === 200) {
-                        form.innerHTML = "<p style='color:" + theme.primaryColor + ";font-weight:500;text-align:center;padding:40px 20px;font-size:16px;'>Thank you for your submission! We'll be in touch soon.</p>";
-                        return;
+                .then(function (response) { return response.json(); })
+                .then(function (result) {
+                    if (result.success) {
+                        form.innerHTML = "<p style='color:" + theme.primaryColor + ";font-weight:500;text-align:center;padding:40px 20px;font-size:16px;'>" + (result.message || "Thank you for your submission! We'll be in touch soon.") + "</p>";
+                    } else {
+                        alert(result.error || "Submission failed");
+                        submit.disabled = false;
+                        submit.textContent = "Submit";
+                        submit.style.opacity = "1";
+                        submit.style.cursor = "pointer";
                     }
-
-                    // If not 200, try to parse error message
-                    return response.text().then(function (text) {
-                        throw new Error(text || "Submission failed");
-                    });
                 })
                 .catch(function (error) {
                     console.error("Form submission error:", error);
-                    alert(error.message || "Submission failed. Please try again.");
+                    alert("Submission failed. Please try again.");
                     submit.disabled = false;
                     submit.textContent = "Submit";
                     submit.style.opacity = "1";
