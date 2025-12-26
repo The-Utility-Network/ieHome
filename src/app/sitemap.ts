@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { LOCATIONS, INITIATIVES, COMPARISONS } from '@/data/seo';
 import { CHAPTERS } from '@/data/chapters';
-import { storylineChapters } from '@/data/storyline';
 
 const baseUrl = 'https://ie.theutilityfoundation.org';
 
