@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -11,6 +11,18 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#A855F7' },
+    { media: '(prefers-color-scheme: dark)', color: '#A855F7' },
+  ],
+};
 
 export const metadata: Metadata = {
   title: "Invisible Enemies | Veterans Advocacy Through Blockchain",
@@ -65,17 +77,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-    viewportFit: 'cover', // Important for Dynamic Island
-  },
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#A855F7' },
-    { media: '(prefers-color-scheme: dark)', color: '#A855F7' },
-  ],
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
