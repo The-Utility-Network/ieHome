@@ -18,7 +18,11 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   viewportFit: 'cover',
-  themeColor: '#000000', // Black for Dynamic Island blending with dark theme
+  colorScheme: 'dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#A855F7' },
+    { media: '(prefers-color-scheme: dark)', color: '#A855F7' },
+  ],
 };
 
 export const metadata: Metadata = {
@@ -76,7 +80,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'default', // Changed to default for proper theme color rendering
+    statusBarStyle: 'black-translucent',
     title: 'Invisible Enemies',
   },
 };
