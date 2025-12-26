@@ -5,6 +5,7 @@ const quickLinks = [
     { label: 'Home', href: '/' },
     { label: 'Whitepaper', href: '/docs' },
     { label: 'Storyline', href: '/storyline' },
+    { label: 'Contact', href: '/contact' },
     { label: 'Portal', href: 'https://portal.ie.theutilityfoundation.org', external: true },
 ];
 

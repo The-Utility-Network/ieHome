@@ -13,6 +13,7 @@ const navLinks = [
 const externalLinks: { label: string; href: string; internal?: boolean }[] = [
     { label: 'WHITEPAPER', href: '/docs', internal: true },
     { label: 'STORYLINE', href: '/storyline', internal: true },
+    { label: 'CONTACT', href: '/contact', internal: true },
 ];
 
 interface NavbarProps {
